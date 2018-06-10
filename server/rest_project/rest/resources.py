@@ -1,4 +1,6 @@
 from tastypie.resources import ModelResource
+from tastypie.serializers import Serializer
+
 from .models import Product
 from tastypie.authorization import Authorization
 
@@ -7,3 +9,4 @@ class ProductResource(ModelResource):
         queryset = Product.objects.all()
         resource_name = 'product'
         authorization = Authorization()
+        serializer = Serializer(formats=['json'],)
