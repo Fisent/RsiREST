@@ -5,7 +5,7 @@ from cli import cli
 
 def create_api():
     api = API(
-        api_root_url='http://127.0.0.1:8000/api/',
+        api_root_url='http://127.0.0.1:8005/api/',
         params={},
         headers={},
         timeout=2,

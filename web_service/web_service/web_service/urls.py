@@ -1,4 +1,4 @@
-"""rest_project URL Configuration
+"""web_service URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -15,13 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url, include
-from rest.resources import ProductResource
-
-product_resource = ProductResource()
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/', include(product_resource.urls)),
-    path(r'api/', include('rest.urls'))
+    path(r'', include('warehouse.urls'))
 ]

@@ -1,4 +1,6 @@
 import json
+from product import Product
+
 
 def create(api):
 
@@ -18,7 +20,8 @@ def read(api):
     try:
         response = api.product.retrieve(int(id), body=None, params=None, headers=None)
         print('Status code: ' + str(response.status_code))
-        print(response.body)
+        product = Product(response.body)
+        print(product)
     except:
         print('No such object')
 
@@ -47,7 +50,8 @@ def list(api):
     try:
         response = api.product.list(body=None, params={}, headers={})
         for product in response.body['objects']:
-            print(product)
+            pr = Product(product)
+            print(pr)
     except Exception as ex:
         print(ex)
 
@@ -67,17 +71,17 @@ def cli(api):
     while(running):
         input_text = input(">")
 
-        if input_text == 'c':
+        if input_text == 'c' or input_text == 'create':
             create(api)
-        elif input_text == 'r':
+        elif input_text == 'r' or input_text == 'read':
             read(api)
-        elif input_text == 'u':
+        elif input_text == 'u' or input_text == 'update':
             update(api)
-        elif input_text == 'd':
+        elif input_text == 'd' or input_text == 'delete':
             delete(api)
-        elif input_text == 'l':
+        elif input_text == 'l' or input_text == 'list' or input_text == 'ls':
             list(api)
-        elif input_text == 'h':
+        elif input_text == 'h' or input_text == 'help':
             help()
         elif input_text == 'exit' or input_text == 'e':
             return
