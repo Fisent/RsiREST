@@ -40,8 +40,10 @@ def update(api):
 
 def delete(api):
     try:
-        response = api.product.destroy(input('Id: '), body=None, params={}, headers={})
-        print('Status code: ' + str(response.status_code))
+        input_text = input('Id: ')
+        for id in input_text.split():
+            response = api.product.destroy(id, body=None, params={}, headers={})
+            print('Status code: ' + str(response.status_code))
     except Exception as ex:
         print(ex)
 
@@ -54,6 +56,7 @@ def list(api):
             print(pr)
     except Exception as ex:
         print(ex)
+
 
 def help():
     print('Select action:')
